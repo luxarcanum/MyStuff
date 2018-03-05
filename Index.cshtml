@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MyBooks.Web.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>My book store - Books</h2>
+
+<p>
+    <button onclick="location.href='@Url.Action("Create", "Book")'" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New book</button>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Genre)
+            </td>
+            <td>
+                <button onclick="location.href='@Url.Action("Edit", "Book", new { id = item.Id } )'" type="button" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit </button>
+                <button onclick="location.href='@Url.Action("Details", "Book", new { id = item.Id })'" type="button" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Details </button>
+                <button onclick="location.href='@Url.Action("Delete", "Book", new { id = item.Id })'" type="button" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span> Delete </button>
+            </td>
+        </tr>
+    }
+
+</table>
